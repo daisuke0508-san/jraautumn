@@ -1,4 +1,33 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>秋の10番勝負</title></head><body>
-<h1>秋の10番勝負 スコアボード</h1>
-<p>data/results.csv を読み込む簡易版</p>
-</body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>秋の10番勝負 | スコアボード</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="color-scheme" content="dark">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>秋の10番勝負 スコアボード</h1>
+      <span class="badge">v1.0 / CSV連携</span>
+    </div>
+
+    <div id="standings" class="card"></div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+        <h2 style="margin:0;font-size:18px;">レース別一覧</h2>
+        <span class="tag">data/results.csv 読み込み</span>
+      </div>
+      <div id="table-wrap" style="overflow:auto;margin-top:8px;"></div>
+      <div class="tag" style="margin-top:8px">ルール：1着=10点（阪神JF/朝日杯FS/ホープフルSは15点）、2着=3点、3着=1点、1着的中時のみオッズボーナス（20倍以上+5／50倍以上+10）</div>
+    </div>
+
+    <div class="foot">© 秋の10番勝負｜GitHub Pages（CSV差し替えで更新）</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

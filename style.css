@@ -1,1 +1,36 @@
-body{background:#111;color:#eee;font-family:sans-serif;padding:20px;}
+
+:root{
+  --bg:#0b0f19;
+  --card:#131a2a;
+  --text:#e6eefc;
+  --muted:#9fb0d9;
+  --accent:#5fa8ff;
+  --gold:#f7d774;
+  --silver:#c9d2e3;
+  --bronze:#e0b196;
+  --green:#b9e6c9;
+  --blue:#bcd7ff;
+  --yellow:#ffefb3;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,'Hiragino Kaku Gothic ProN','Noto Sans JP','Yu Gothic UI','Meiryo',sans-serif}
+.container{max-width:1100px;margin:32px auto;padding:0 16px}
+.header{display:flex;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap}
+h1{font-size:clamp(20px,3vw,28px);margin:0}
+.badge{padding:6px 10px;border:1px solid #28406f;border-radius:8px;background:#0f1a30;color:var(--muted)}
+.card{background:var(--card);border:1px solid #212b44;border-radius:14px;padding:16px;margin-bottom:16px}
+.table{width:100%;border-collapse:separate;border-spacing:0}
+.table th,.table td{padding:10px 12px;border-bottom:1px solid #223152;white-space:nowrap}
+.table thead th{position:sticky;top:0;background:linear-gradient(#17223a,#131a2a);z-index:2}
+.table tbody tr:hover{background:#0f1526}
+.kpi{display:flex;gap:12px;flex-wrap:wrap}
+.kpi .pill{background:#0d162b;border:1px solid #243a63;padding:10px 12px;border-radius:10px}
+.rank-1{border:2px solid var(--gold)}
+.rank-2{border:2px solid var(--silver)}
+.rank-3{border:2px solid var(--bronze)}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid #2c3b5c;background:#0e1730;color:var(--muted)}
+.foot{color:var(--muted);font-size:12px;margin-top:8px}
+.match-win{background:var(--green);color:#043a1f}
+.match-2{background:var(--blue);color:#0b2b6b}
+.match-3{background:var(--yellow);color:#5a4200}
+@media (max-width:860px){.table{font-size:14px}.hide-s{display:none}}
