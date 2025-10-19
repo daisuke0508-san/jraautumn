@@ -1,5 +1,21 @@
 
-const CSV_PATH = 'data/results.csv';
+// CSVの場所を自動検出しつつ、キャッシュを確実に避ける
+const CSV_CANDIDATES = ['data/results.csv', 'results.csv'];
+function bust(url){ return url + (url.includes('?') ? '&' : '?') + 'v=' + Date.now(); }
+
+async function loadCSVAuto(){
+  for (const p of CSV_CANDIDATES) {
+    try {
+      const res = await fetch(bust(p), {cache:'no-store'});
+      if (res.ok) {
+        const text = await res.text();
+        return { path: p, ...parseCSV(text) };
+      }
+    } catch (_) { /* 次を試す */ }
+  }
+  throw new Error('CSVが見つかりません（data/results.csv か results.csv を配置してください）');
+}
+
 const BONUS_RACES = new Set(['阪神JF','朝日杯FS','ホープフルS']);
 const PARTICIPANTS = ['池田','サノケンジ','王','村山先生','大輔'];
 
@@ -119,4 +135,17 @@ async function main(){
     document.getElementById('table-wrap').innerHTML = `<div style="color:#f88">CSVの読み込みに失敗しました：${e}</div>`;
   }
 }
+async function main(){
+  try{
+    const {header, rows, path} = await loadCSVAuto();
+    const badge = document.querySelector('.tag');
+    if (badge) badge.textContent = `${path} 読み込み`;
+    renderStandings(rows);
+    renderTable(header, rows);
+  }catch(e){
+    document.getElementById('table-wrap').innerHTML =
+      `<div style="color:#f88">CSVの読み込みに失敗しました：${e}</div>`;
+  }
+}
 main();
+
